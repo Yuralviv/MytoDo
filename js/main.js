@@ -1,7 +1,6 @@
 let tasks = [
 	'study javascript',
 	'study react',
-	'make to do list',
 ];
 
 
@@ -39,8 +38,8 @@ function generateList(tasksArray) {
 }
 
 function addList(list) {
+
 	tasks.unshift(list);
-	// generateList(tasks);
 	ul.insertAdjacentElement('afterbegin', listTempale(list));
 }
 
@@ -60,7 +59,14 @@ ul.addEventListener('click', function(e){
 
 form.addEventListener('submit', function(event){
 	e.preventDefault(); 
+
+	if ( !inputText.value) {
+		inputText.classList.add('is-invalid');
+	}else{
 	addList(inputText.value);
+		
+	}
+
 
 });
 
