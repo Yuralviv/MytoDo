@@ -6,12 +6,13 @@ let tasks = [
 
 
 let ul = document.querySelector('.list-group');
-let deleteBtns = document.getElementsByClassName('delete-item');
+let form = document.forms['addTodoItem'];
+let inputText = form.elements['todoText'];
 
 
 function listTempale(task) {
+	
 	let li = document.createElement('li');
-
 	li.textContent = task;
 	li.className = 'list-group-item d-flex align-items-center'; 	
 
@@ -34,22 +35,35 @@ function generateList(tasksArray) {
 		ul.appendChild(listTempale(tasksArray[i]));	
 	}
 
-	setDeleteEvent();
+	
 }
 
 function addList(list) {
 	tasks.unshift(list);
-	generateList(tasks);
+	// generateList(tasks);
+	ul.insertAdjacentElement('afterbegin', listTempale(list));
 }
 
+function deleteListItem(target) {
+	let parent = target.closest('li');
+	let index = tasks.indexOf(parent.textContent);
+	tasks.slice(index, 1);
+	parent.remove();
+}
 
-function setDeleteEvent() {
-	for(let i= 0; i < deleteBtns.length; i++){
-		deleteBtns[i].addEventListener('click', function (event) {
-		console.log('click');
-		});
+ul.addEventListener('click', function(e){
+	if (e.target.classList.contains('delete-item') ) {
+
+		deleteListItem(e.target);
 	}
-}
+});
+
+form.addEventListener('submit', function(event){
+	e.preventDefault(); 
+	addList(inputText.value);
+
+});
+
 
 generateList(tasks);
 

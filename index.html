@@ -7,20 +7,48 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-	<section class="task-wrap mt-5">
-		<div class="container">
-			<h3 class="text-center">Task list</h3>
-			<!-- /.text-center -->
-			<ul class="list-group mb-3">
-				
-			   <!-- <li class="list-group-item">Cras justo odio</li> -->
-			</ul>
 
-			<button class="btn btn-primary  clear-btn">Clear list</button>
+	<section class="tasks-wrap mt-5">
+		<div class="container">
+			<div class="card mb-3">
+				<div class="card-header">
+					Add todo
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body">
+					<form>
+						<div class="form-group">
+							<label for="todoText">Text</label>
+							<input type="text" class="form-control" id="todoText">
+						</div>
+						<!-- /.form-group -->
+						<button type="submit" class="btn btn-primary">add</button>
+					</form>
+				</div>
+				<!-- /.card-body -->
+			</div>
+			<!-- /.card -->
+			<div class="card mb-3">
+				<div class="card-header text-center">
+					Task List
+				</div>
+				<!-- /.card-header -->
+				<div class="card-body">
+					<ul class="list-group">
+						
+					</ul>
+				</div>
+				<!-- /.card-body -->
+					
+			</div>
+			<!-- /.card -->
+			<button class="btn btn-primary clear-btn">clear list</button>
 		</div>
 		<!-- /.container -->
 	</section>
-	<!-- /.task-wrap -->
+	<!-- /.tasks-wrap -->
+	
+	
 	<script src="js/main.js"></script>
 </body>
 </html>
