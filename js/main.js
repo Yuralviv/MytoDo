@@ -1,20 +1,28 @@
+
+	/*array with tasks*/
 let tasks = [
-	'study javascript',
-	'study react',
+	// 'study javascript',
+	// 'study react',
 ];
 
-
+///////////////////////////////////////////
+		/*use tag from html*/
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
 let inputText = form.elements['todoText'];
 
 
+
+		//this function create tag li (task)
 function listTempale(task) {
 	
 	let li = document.createElement('li');
 	li.textContent = task;
-	li.className = 'list-group-item d-flex align-items-center'; 	
 
+	// add needed class
+	li.className = 'list-group-item d-flex align-items-center'; 	
+	
+	// added trash in tag li
 	let iDelete = document.createElement('i');
 	iDelete.className = 'far fa-trash-alt delete-item ml-auto';
 	li.appendChild(iDelete);	
@@ -33,14 +41,13 @@ function generateList(tasksArray) {
 	for(let i = 0; i<tasksArray.length; i++){
 		ul.appendChild(listTempale(tasksArray[i]));	
 	}
-
-	
 }
 
 function addList(list) {
 
 	tasks.unshift(list);
-	ul.insertAdjacentElement('afterbegin', listTempale(list));
+	//ul.insertAdjacentElement('afterbegin', listTempale(list));
+	ul.insertAdjacentElement('afterbegin', listTempale(list) );
 }
 
 function deleteListItem(target) {
@@ -63,13 +70,16 @@ form.addEventListener('submit', function(event){
 	if ( !inputText.value) {
 		inputText.classList.add('is-invalid');
 	}else{
-	addList(inputText.value);
+		inputText.classList.add('is-invalid');
+		addList(inputText.value);
+		form.reset();
 		
 	}
-
-
 });
 
 
+///////////////////////////////////////////
+
 generateList(tasks);
 
+///////////////////////////////////////////
