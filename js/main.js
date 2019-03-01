@@ -1,85 +1,90 @@
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
 
-	/*array with tasks*/
-let tasks = [
-	// 'study javascript',
-	// 'study react',
-];
-
-///////////////////////////////////////////
-		/*use tag from html*/
 let ul = document.querySelector('.list-group');
 let form = document.forms['addTodoItem'];
-let inputText = form.elements['todoText'];
+let inputText =  form.elements['todoText'];
 
 
 
-		//this function create tag li (task)
-function listTempale(task) {
-	
+function listTemplate(task) {
+	//create list item
 	let li = document.createElement('li');
-	li.textContent = task;
+	li.className = 'list-group-item d-flex align-items-center';
 
-	// add needed class
-	li.className = 'list-group-item d-flex align-items-center'; 	
-	
-	// added trash in tag li
+	let span = document.createElement('span');
+	span.textContent = task;
+
+	//create tag i trash
 	let iDelete = document.createElement('i');
 	iDelete.className = 'far fa-trash-alt delete-item ml-auto';
-	li.appendChild(iDelete);	
-	
+
+	//append delete icon to li
+	li.appendChild(span);
+	//li.appendChild(iEdit);
+	li.appendChild(iDelete);
+
 	return li;
+
 }
 
-function clearList() {
-	ul.innerHtml = '';
+function clearList(){
+	ul.innerHTML = ' ';
 }
 
-function generateList(tasksArray) {
+function generateList(taskArray){
 
 	clearList();
 
-	for(let i = 0; i<tasksArray.length; i++){
-		ul.appendChild(listTempale(tasksArray[i]));	
+	for(let i = 0; i < taskArray.length; i++){
+		let li = listTemplate(taskArray[i]);
+		ul.appendChild(li);
 	}
 }
 
-function addList(list) {
-
+function addList(list){
 	tasks.unshift(list);
-	//ul.insertAdjacentElement('afterbegin', listTempale(list));
-	ul.insertAdjacentElement('afterbegin', listTempale(list) );
+	//generateList(tasks);
+	ul.insertAdjacentElement('afterbegin', listTemplate(list) );
+	//add to localStorage
+	localStorage.setItem('tasks', JSON.stringify(tasks) );
 }
 
 function deleteListItem(target) {
 	let parent = target.closest('li');
-	let index = tasks.indexOf(parent.textContent);
-	tasks.slice(index, 1);
+	let text = parent.textContent;
+	let index = tasks.indexOf(text);
+	tasks.splice(index, 1);
 	parent.remove();
+	//update  to localStorage
+	localStorage.setItem('tasks', JSON.stringify(tasks) );
 }
 
-ul.addEventListener('click', function(e){
+ul.addEventListener('click', function(e) {
 	if (e.target.classList.contains('delete-item') ) {
 
 		deleteListItem(e.target);
+
 	}
 });
 
-form.addEventListener('submit', function(event){
-	e.preventDefault(); 
-
-	if ( !inputText.value) {
+form.addEventListener('submit', function(e) {
+	
+	e.preventDefault();
+	if (!inputText.value) {
+		//show error
 		inputText.classList.add('is-invalid');
 	}else{
-		inputText.classList.add('is-invalid');
+		//addList(inputText.value);
+		inputText.classList.remove('is-invalid');
 		addList(inputText.value);
 		form.reset();
-		
 	}
 });
 
-
-///////////////////////////////////////////
-
+inputText.addEventListener('keyup', function(e) {
+	if (inputText.value)  {
+		inputText.classList.remove('is-invalid');
+	}
+});
+/////////////
 generateList(tasks);
-
-///////////////////////////////////////////

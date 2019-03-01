@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>to do list</title>
+	<title>Todo App</title>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- <link rel="stylesheet" href="css/main.css"> -->
 </head>
 <body>
-
 	<section class="tasks-wrap mt-5">
 		<div class="container">
 			<div class="card mb-3">
 				<div class="card-header">
-					Add todo
+					<h3 class="text-center">Add todo</h3>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
+					
 					<form name="addTodoItem">
 						<div class="form-group">
-							<label for="todoText">Text</label>
-							<input type="text" class="form-control" id="todoText">
+							
+							<input type="text" class="form-control" id="todoText" placeholder="write your task">
 							<div class="invalid-feedback">
 								please enter some text!
 							</div>
@@ -35,12 +37,12 @@
 
 			<div class="card mb-3">
 				<div class="card-header text-center">
-					Task List
+					<h4>Task List</h4>
 				</div>
 				<!-- /.card-header -->
 				<div class="card-body">
 					<ul class="list-group">
-						<!-- <li></li> -->
+<!-- 						<li></li> -->
 					</ul>
 				</div>
 				<!-- /.card-body -->
@@ -54,6 +56,6 @@
 	<!-- /.tasks-wrap -->
 	
 	
-	<script src="js/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
